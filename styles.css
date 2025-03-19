@@ -1,0 +1,186 @@
+/* Cores base */
+:root {
+    --primary-color: rgb(90, 13, 184);
+    --primary-color-light: rgba(90, 13, 184, 0.1);
+    --background-gradient: linear-gradient(135deg, rgba(90, 13, 184, 1), rgba(128, 0, 128, 1), rgba(75, 0, 130, 1));
+    --text-color: #fff; /* Texto branco para contrastar com o fundo escuro */
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset básico */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--background-gradient);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente para contrastar com o gradiente */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 5px 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+
+nav ul li a:hover {
+    opacity: 0.8;
+}
+
+/* Conteúdo principal */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Categorias */
+.categories {
+    margin-bottom: 40px;
+}
+
+.categories h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 20px; /* Aumentei o espaçamento abaixo do título */
+}
+
+.categories ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Aumentei o espaçamento entre os botões */
+}
+
+.categories ul li a {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
+    color: rgba(255, 255, 255, 0.9); /* Texto branco com leve transparência */
+    padding: 12px 20px; /* Aumentei o padding para tornar os botões maiores */
+    border-radius: 25px; /* Bordas mais arredondadas */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem; /* Aumentei o tamanho da fonte */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.categories ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo mais claro ao passar o mouse */
+    transform: translateY(-3px); /* Efeito de levantar o botão */
+}
+
+/* Artigos */
+.articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.articles article {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.articles article img.article-image {
+    width: 100%; /* A imagem ocupa 100% da largura do card */
+    height: 200px; /* Altura fixa para a imagem */
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    border-radius: 8px 8px 0 0; /* Bordas arredondadas apenas no topo */
+    margin-bottom: 15px; /* Espaçamento abaixo da imagem */
+}
+
+.articles article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.articles h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.articles p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.articles .author {
+    font-weight: bold;
+    color: #fff;
+}
+
+.articles .category {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+}
+
+/* Footer */
+footer {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .categories ul {
+        flex-direction: column;
+    }
+
+    .categories ul li a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .articles {
+        grid-template-columns: 1fr;
+    }
+}
