@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swift Development</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
+    <script src="articles.js"></script>
 </head>
 <body>
     <header>
@@ -14,7 +16,7 @@
                 <li><a href="#">Articles</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Drafts</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="about.html">About</a></li>
             </ul>
         </nav>
     </header>
@@ -33,7 +35,11 @@
             </ul>
         </section>
 
-        <section class="articles">
+        <section class="articles" id="articles-list">
+            <!-- Artigos serão carregados aqui dinamicamente -->
+        </section>
+
+        <!-- <section class="articles">
             <article>
                 <img src="default-image.png" alt="Artigo sobre iOS Development" class="article-image">
                 <h3>How We Revolutionize the Future of iOS Development</h3>
@@ -57,11 +63,48 @@
                 <p class="author">BY OLIVIA WILSON</p>
                 <p class="category">SWIFT TIPS</p>
             </article>
-        </section>
+        </section> -->
     </main>
 
     <footer>
         <p>&copy; 2024 Swiftology Inc. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Função para carregar os artigos
+        async function loadArticles() {
+            const articlesList = document.getElementById('articles-list');
+
+            try {
+                for (const article of articles) {
+                    const response = await fetch(article.file);
+                    if (!response.ok) {
+                        throw new Error(`Erro ao carregar o arquivo: ${article.file}`);
+                    }
+
+                    const text = await response.text();
+                    const title = text.split('\n')[0].replace('#', '').trim(); // Extrai o título do primeiro parágrafo
+                    const description = text.split('\n')[1].trim(); // Extrai o segundo parágrafo como descrição
+
+                    const articleElement = document.createElement('article');
+                    articleElement.innerHTML = `
+                        <img src="${article.image}" alt="${title}" class="article-image">
+                        <h3><a href="article.html?file=${article.file}">${title}</a></h3>
+                        <p>${description}</p>
+                        <p class="author">BY AUTHOR NAME</p>
+                        <p class="category">CATEGORY</p>
+                    `;
+
+                    articlesList.appendChild(articleElement);
+                }
+            } catch (error) {
+                console.error('Erro ao carregar artigos:', error);
+                articlesList.innerHTML = `<p>Erro ao carregar os artigos. Verifique o console para mais detalhes.</p>`;
+            }
+        }
+
+        // Carregar os artigos quando a página for carregada
+        window.onload = loadArticles;
+    </script>
 </body>
 </html>

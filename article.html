@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - Swift with Lys</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Swift with Lys</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Articles</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Drafts</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="article-content">
+            <!-- O conteúdo do Markdown será renderizado aqui -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Swift with Lys. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Função para carregar o conteúdo do Markdown
+        function loadMarkdownContent() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const markdownFile = urlParams.get('file');
+
+            if (markdownFile) {
+                fetch(markdownFile)
+                    .then(response => response.text())
+                    .then(text => {
+                        document.getElementById('article-content').innerHTML = marked.parse(text);
+                    })
+                    .catch(error => console.error('Error loading Markdown file:', error));
+            }
+        }
+
+        // Carregar o conteúdo quando a página for carregada
+        window.onload = loadMarkdownContent;
+    </script>
+</body>
+</html>

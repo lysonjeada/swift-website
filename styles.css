@@ -3,7 +3,7 @@
     --primary-color: rgb(90, 13, 184);
     --primary-color-light: rgba(90, 13, 184, 0.1);
     --background-gradient: linear-gradient(135deg, rgba(90, 13, 184, 1), rgba(128, 0, 128, 1), rgba(75, 0, 130, 1));
-    --text-color: #fff; /* Texto branco para contrastar com o fundo escuro */
+    --text-color: #fff;
     --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -20,7 +20,7 @@ body {
 
 /* Header */
 header {
-    background-color: rgba(0, 0, 0, 0.3); /* Fundo semi-transparente para contrastar com o gradiente */
+    background-color: rgba(0, 0, 0, 0.3);
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -71,7 +71,7 @@ main {
 .categories h2 {
     font-size: 1.5rem;
     color: #fff;
-    margin-bottom: 20px; /* Aumentei o espaçamento abaixo do título */
+    margin-bottom: 20px;
 }
 
 .categories ul {
@@ -79,24 +79,24 @@ main {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 15px; /* Aumentei o espaçamento entre os botões */
+    gap: 15px;
 }
 
 .categories ul li a {
-    background-color: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
-    color: rgba(255, 255, 255, 0.9); /* Texto branco com leve transparência */
-    padding: 12px 20px; /* Aumentei o padding para tornar os botões maiores */
-    border-radius: 25px; /* Bordas mais arredondadas */
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 12px 20px;
+    border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1rem; /* Aumentei o tamanho da fonte */
+    font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.3s ease;
     display: inline-block;
 }
 
 .categories ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Fundo mais claro ao passar o mouse */
-    transform: translateY(-3px); /* Efeito de levantar o botão */
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
 }
 
 /* Artigos */
@@ -115,11 +115,11 @@ main {
 }
 
 .articles article img.article-image {
-    width: 100%; /* A imagem ocupa 100% da largura do card */
-    height: 200px; /* Altura fixa para a imagem */
-    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
-    border-radius: 8px 8px 0 0; /* Bordas arredondadas apenas no topo */
-    margin-bottom: 15px; /* Espaçamento abaixo da imagem */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 15px;
 }
 
 .articles article:hover {
@@ -129,25 +129,29 @@ main {
 
 .articles h3 {
     margin: 0;
-    font-size: 1.3rem;
-    color: #fff;
+    font-size: 1.5rem; /* Tamanho maior para o título */
+    color: #fff; /* Título em branco */
+    line-height: 1.4; /* Espaçamento entre linhas */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
 }
 
 .articles p {
     margin: 10px 0;
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9); /* Texto mais suave */
 }
 
 .articles .author {
     font-weight: bold;
-    color: #fff;
+    color: var(--primary-color); /* Cor primária para o autor */
+    margin: 5px 0;
 }
 
 .articles .category {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
+    margin: 5px 0;
 }
 
 /* Footer */
@@ -183,4 +187,49 @@ footer p {
     .articles {
         grid-template-columns: 1fr;
     }
+}
+
+/* Estilos para a página About */
+.about {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+
+.about h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.social-links li a {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
 }
