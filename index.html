@@ -7,22 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
     <script src="articles.js"></script>
-    <style>
-        .carousel-container {
-            overflow-x: auto;
-            white-space: nowrap;
-            display: flex;
-            gap: 20px;
-            padding: 10px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        .carousel-container article {
-            flex: 0 0 auto;
-            width: 300px;
-            scroll-snap-align: start;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -52,7 +36,7 @@
         </section>
 
         <section class="articles carousel-container" id="articles-list">
-            <!-- Artigos serão carregados aqui dinamicamente -->
+            <!-- Articles will be loaded here dynamically -->
         </section>
     </main>
 
@@ -68,7 +52,7 @@
                 for (const article of articles) {
                     const response = await fetch(article.file);
                     if (!response.ok) {
-                        throw new Error(`Erro ao carregar o arquivo: ${article.file}`);
+                        throw new Error(`Error loading file: ${article.file}`);
                     }
 
                     const text = await response.text();
@@ -77,18 +61,18 @@
 
                     const articleElement = document.createElement('article');
                     articleElement.innerHTML = `
-                        <img src="${article.image}" alt="${title}" class="article-image" style="width:100%">
-                        <h3><a href="article.html?file=${article.file}">${title}</a></h3>
-                        <p>${description}</p>
-                        <p class="author">BY AUTHOR NAME</p>
-                        <p class="category">CATEGORY</p>
+                        <div class="article-content">
+                            <img src="${article.image}" alt="${title}" class="article-image">
+                            <h3 class="article-title"><a href="article.html?file=${article.file}">${title}</a></h3>
+                            <p class="article-desc">${description}</p>
+                        </div>
+                        <p class="category">${article.category || 'CATEGORY'}</p>
                     `;
-
                     articlesList.appendChild(articleElement);
                 }
             } catch (error) {
-                console.error('Erro ao carregar artigos:', error);
-                articlesList.innerHTML = `<p>Erro ao carregar os artigos. Verifique o console para mais detalhes.</p>`;
+                console.error('Error loading articles:', error);
+                articlesList.innerHTML = `<p>Error loading articles. Please check console for details.</p>`;
             }
         }
 
