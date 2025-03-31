@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
     <script src="articles.js"></script>
+    <style>
+        .carousel-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel-container article {
+            flex: 0 0 auto;
+            width: 300px;
+            scroll-snap-align: start;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -35,35 +51,9 @@
             </ul>
         </section>
 
-        <section class="articles" id="articles-list">
+        <section class="articles carousel-container" id="articles-list">
             <!-- Artigos serão carregados aqui dinamicamente -->
         </section>
-
-        <!-- <section class="articles">
-            <article>
-                <img src="default-image.png" alt="Artigo sobre iOS Development" class="article-image">
-                <h3>How We Revolutionize the Future of iOS Development</h3>
-                <p>Predictions for the Next 5 Years</p>
-                <p class="author">BY ALEX OZUN</p>
-                <p class="category">CASE STUDIES</p>
-            </article>
-
-            <article>
-                <img src="default-image.png" alt="Artigo sobre iOS Development" class="article-image">
-                <h3>Creating a Killer UI/UX Strategy</h3>
-                <p>Tips and Tricks for Success</p>
-                <p class="author">BY CHIAMI SATO</p>
-                <p class="category">UI/UX DESIGN</p>
-            </article>
-
-            <article>
-                <img src="default-image.png" alt="Artigo sobre iOS Development" class="article-image">
-                <h3><a>Mastering Swift: Advanced Techniques</a></h3>
-                <p>Enhance Your Coding Skills</p>
-                <p class="author">BY OLIVIA WILSON</p>
-                <p class="category">SWIFT TIPS</p>
-            </article>
-        </section> -->
     </main>
 
     <footer>
@@ -71,7 +61,6 @@
     </footer>
 
     <script>
-        // Função para carregar os artigos
         async function loadArticles() {
             const articlesList = document.getElementById('articles-list');
 
@@ -83,12 +72,12 @@
                     }
 
                     const text = await response.text();
-                    const title = text.split('\n')[0].replace('#', '').trim(); // Extrai o título do primeiro parágrafo
-                    const description = text.split('\n')[1].trim(); // Extrai o segundo parágrafo como descrição
+                    const title = text.split('\n')[0].replace('#', '').trim();
+                    const description = text.split('\n')[1].trim();
 
                     const articleElement = document.createElement('article');
                     articleElement.innerHTML = `
-                        <img src="${article.image}" alt="${title}" class="article-image">
+                        <img src="${article.image}" alt="${title}" class="article-image" style="width:100%">
                         <h3><a href="article.html?file=${article.file}">${title}</a></h3>
                         <p>${description}</p>
                         <p class="author">BY AUTHOR NAME</p>
@@ -103,7 +92,6 @@
             }
         }
 
-        // Carregar os artigos quando a página for carregada
         window.onload = loadArticles;
     </script>
 </body>

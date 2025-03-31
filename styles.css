@@ -32,6 +32,7 @@ header h1 {
     font-size: 2rem;
 }
 
+/* Navegação */
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -99,61 +100,62 @@ main {
     transform: translateY(-3px);
 }
 
-/* Artigos */
-.articles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+/* Carrossel de Artigos */
+.articles-container {
+    overflow-x: auto;
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
 }
 
-.articles article {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 8px;
+.articles-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.articles-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
+
+.article-card {
+    flex: 0 0 280px;
+    background: #6c289c;
+    border-radius: 12px;
+    padding: 16px;
+    color: white;
+    scroll-snap-align: start;
+    overflow: hidden;
     box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.articles article img.article-image {
+.article-card img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
-    margin-bottom: 15px;
+    height: auto;
+    border-radius: 8px;
 }
 
-.articles article:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-}
-
-.articles h3 a {
-    margin: 0;
-    font-size: 1.5rem; /* Tamanho maior para o título */
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none; /* Título em branco */
-    line-height: 1.4; /* Espaçamento entre linhas */
-    margin-bottom: 10px; /* Espaçamento abaixo do título */
-}
-
-.articles p {
-    margin: 10px 0;
+.article-card h3 {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9); /* Texto mais suave */
+    margin: 8px 0;
+    line-height: 1.2;
+    max-height: 3.6em; /* Trunca após 3 linhas */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.articles .author {
-    font-weight: bold;
-    color: var(--primary-color); /* Cor primária para o autor */
-    margin: 5px 0;
-}
-
-.articles .category {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: uppercase;
-    margin: 5px 0;
+.article-card p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    line-height: 1.2;
+    max-height: 3.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 /* Footer */
@@ -214,6 +216,7 @@ footer p {
     margin-bottom: 20px;
 }
 
+/* Redes sociais */
 .social-links {
     list-style-type: none;
     padding: 0;
