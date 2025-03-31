@@ -140,10 +140,13 @@ main {
     font-size: 1rem;
     margin: 8px 0;
     line-height: 1.2;
-    max-height: 3.6em; /* Trunca após 3 linhas */
+    max-height: 3.6em; /* 3 linhas (1.2 * 3) */
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita a 3 linhas */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* Permite quebra de linha */
 }
 
 .article-card p {
